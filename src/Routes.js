@@ -66,7 +66,8 @@ const Home = () => (
   <div className='container'>
     <div className='App'>
       <div id='map'>
-        <iframe src='https://www.google.com/maps/d/embed?mid=1-WIuuq1TjhOCQnTIWv_hRsvzCeg' width='800' height='600' frameborder='0' allowfullscreen></iframe>
+        <iframe
+          title='gmap' src='https://www.google.com/maps/d/embed?mid=1-WIuuq1TjhOCQnTIWv_hRsvzCeg' width='800' height='600' frameborder='0' allowfullscreen></iframe>
       </div>
     </div>
   </div>

@@ -7,11 +7,25 @@ class Profile extends Component {
   constructor (props) {
     super()
     this.state = {
-      medication: '',
+      medications: [],
       dosage: '',
       user: props.logggedIn
     }
+    console.log(firebase)
   }
+
+  componentDidMount () {
+    /* Create reference to messages in Firebase Database */
+    let medRef = firebase.database().ref('/medications')
+    medRef.on('value', snapshot => {
+      /* Update React state when message is added at Firebase Database */
+      // let message = { text: snapshot.val(), id: snapshot.key };
+      this.setState({
+        medications: snapshot.val()
+      })
+    })
+  }
+
   handleSubmit (e) {
     e.preventDefault()
 
@@ -39,16 +53,20 @@ class Profile extends Component {
 
         <h1>Medication list</h1>
         <div className='row'>
-          <div className='col s4 m7'>
-            <div className='card'>
-              <div className='card-image'>
-                <img src='assets/images/panadol.jpg' alt='paracetamol'></img>
+          { this.state.medications.map((med, index) => {
+            return (
+              <div className='col s4 m7' key={index}>
+                <div className='card'>
+                  {/* <div className='card-image'>
+                    <img src='assets/images/panadol.jpg' alt='paracetamol'></img>
+                  </div> */}
+                  <span className='card-title'>{med.medication}</span>
+                  <div className='card-content'>
+                  </div>
+                </div>
               </div>
-              <span className='card-title'></span>
-              <div className='card-content'>
-              </div>
-            </div>
-          </div>
+            )
+          })}
         </div>
       </div>
     )

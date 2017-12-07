@@ -17,7 +17,7 @@ Sign up is required to add user profile and assign medications list.
 Deloyed on the following:
 
 - Github: <https://github.com/G174/medicate>
-- Heroku: <https://proj2grace.herokuapp.com/>
+- Heroku: <https://medicate2017.herokuapp.com/>
 
 ## Built With
 
