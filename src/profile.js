@@ -2,63 +2,61 @@ import React, { Component } from 'react'
 import firebase from './firebase.js'
 import './App.css'
 
+
 class Profile extends Component {
   constructor (props) {
     super()
     this.state = {
-      medication: [],
-      dosage: [],
-      reminder: [],
+      medication: '',
+      dosage: '',
       user: props.logggedIn
     }
   }
+  handleSubmit (e) {
+    e.preventDefault()
 
+    const formData = Array.from(e.target.elements)
+            .filter(el => el.name)
+            .reduce((a, b) => ({...a, [b.name]: b.value}), {})
+    console.log('target elements', formData)
 
-  // componentDidMount () {
-  //     const dbRef = firebase.database().ref().child('medications')
-  //     const medRef = dbRef.child('medication')
-  //     medRef.on('value', snap => {
-  //       this.setState({
-  //         medication: snap.val(),
-  //         dosage: snap.val()
-  //       })
-  //     })
-  //     $('#save_button').onClick(function (){
-  //       dbRef.set({
-  //         medication:$('#medication').val(),
-  //         dosage:$('#dosage').val()
-  //       })
-  //     $('#edit_button').onClick(function(){
-  //       dbRef.update({
-  //         medication:$('#medication').val(),
-  //         dosage: $('#dosage').val()
-  //       })
-  //     })
-  //   })
-  // }
-
+    var starCountRef = firebase.database().ref('medications')
+    var childNumber = 0
+    starCountRef.once('value', function (snap) {
+      childNumber = snap.numChildren()
+      starCountRef.child(childNumber).set(formData)
+    })
+  }
   render () {
     return (
-      <div className="App">
-          <h1>Medications</h1><br/>
-          <div class="row">
-            <div class="col s4 m7">
-              <div class="card">
-                <div class="card-image">
-                  <img src="images/sample-1.jpg"></img>
-                  <span class="card-title">Card Title</span>
+      <div className='App'>
+          <h1>Add Medications</h1><br/>
+          <div className='row'>
+            <div className='col s4 m7'>
+              <div className='card'>
+                <div className='card-image'>
+                  <img src='images/sample-1.jpg'></img>
+                  <span className="card-title">Card Title</span>
                 </div>
-                <div class="card-content">
-                  <h6>Medication: </h6><input type="text" id="medication">{this.state.medication}</input>
-                  <h6>Dosage: </h6><input type="text" id="dosage">{this.state.dosage}</input>
-                  <button id="edit_button" onClick ={this.update.bind}>Edit</button>
-                  <button id="save_button">Save</button>
+                <div className="card-content">
+                  <form onSubmit={(e)=>this.handleSubmit(e)}>
+                  <label>
+                    Medication:
+                  <input type='text' name="medication" />
+                </label>
+              <label>
+                  Dosage:
+                  <input name="dosage" type='text' id="dosage" />
+                </label>
+                  {/* <button id="edit_button" onClick={() => this.update()}>Edit</button> */}
+                  <input type="submit" value="save" />
+                </form>
                 </div>
               </div>
             </div>
           </div>
       </div>
-    );
+    )
   }
 }
 
