@@ -43,11 +43,12 @@ class Profile extends Component {
   }
   render () {
     return (
+
       <div className='App'>
         <h1>Add Medications</h1>
         <form onSubmit={(e)=>this.handleSubmit(e)}>
-          <label>Medication:<input type='text' name='medication' /></label>
-          <label>Dosage:<input type='text' name='dosage' /></label>
+          <label><h4>Medication:</h4><input type='text' name='medication' /></label>
+          <label><h4>Dosage:</h4><input type='text' name='dosage' /></label>
             <input type="submit" value="save" />
           </form>
 
@@ -55,13 +56,16 @@ class Profile extends Component {
         <div className='row'>
           { this.state.medications.map((med, index) => {
             return (
-              <div className='col s4 m7' key={index}>
+              <div className='col s3 m5' key={index}>
                 <div className='card'>
                   {/* <div className='card-image'>
-                    <img src='assets/images/panadol.jpg' alt='paracetamol'></img>
+                    <img src='../assets/images/panadol.jpg' alt='paracetamol.jpg'></img>
                   </div> */}
                   <span className='card-title'>{med.medication}</span>
-                  <div className='card-content'>
+                  <div className='card-content'>{med.dosage}
+                    <div class='card-action'>
+                      <button onClick=''>Delete</button>
+                    </div>
                   </div>
                 </div>
               </div>

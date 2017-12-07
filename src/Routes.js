@@ -39,15 +39,19 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/profile'>Profile</Link></li>
-            {this.state.user
-          ? <Link to='/' onClick={() => this.logout()}>Log Out</Link>
-          : <Link to='/' onClick={() => this.login()}>Log In</Link>
-          }
-          </ul>
-
+          <nav>
+            <div class="nav-wrapper">
+              <a href="/" class="brand-logo"> Medicate </a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><Link to='/'>Home</Link></li>
+                <li><Link to='/profile'>Profile</Link></li>
+                {this.state.user
+                  ? <li><Link to='/' onClick={() => this.logout()}>Log Out</Link></li>
+                  : <li><Link to='/' onClick={() => this.login()}>Log In</Link></li>
+                }
+              </ul>
+            </div>
+          </nav>
           <Route exact path='/' component={Home} />
           <Route path='/profile' render={() => <Profile loggedIn={this.state.user} />} />
         </div>
