@@ -4,7 +4,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import firebase, { auth, provider } from './firebase.js'
+import { auth, provider } from './firebase.js'
 import './App.css'
 import Profile from './profile'
 

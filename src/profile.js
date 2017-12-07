@@ -30,31 +30,26 @@ class Profile extends Component {
   render () {
     return (
       <div className='App'>
-          <h1>Add Medications</h1><br/>
-          <div className='row'>
-            <div className='col s4 m7'>
-              <div className='card'>
-                <div className='card-image'>
-                  <img src='images/sample-1.jpg'></img>
-                  <span className="card-title">Card Title</span>
-                </div>
-                <div className="card-content">
-                  <form onSubmit={(e)=>this.handleSubmit(e)}>
-                  <label>
-                    Medication:
-                  <input type='text' name="medication" />
-                </label>
-              <label>
-                  Dosage:
-                  <input name="dosage" type='text' id="dosage" />
-                </label>
-                  {/* <button id="edit_button" onClick={() => this.update()}>Edit</button> */}
-                  <input type="submit" value="save" />
-                </form>
-                </div>
+        <h1>Add Medications</h1>
+        <form onSubmit={(e)=>this.handleSubmit(e)}>
+          <label>Medication:<input type='text' name='medication' /></label>
+          <label>Dosage:<input type='text' name='dosage' /></label>
+            <input type="submit" value="save" />
+          </form>
+
+        <h1>Medication list</h1>
+        <div className='row'>
+          <div className='col s4 m7'>
+            <div className='card'>
+              <div className='card-image'>
+                <img src='assets/images/panadol.jpg' alt='paracetamol'></img>
+              </div>
+              <span className='card-title'></span>
+              <div className='card-content'>
               </div>
             </div>
           </div>
+        </div>
       </div>
     )
   }
