@@ -31,9 +31,9 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 
 ## Workflow
 
-- ERD Diagram ![](/public/assets/images/erd.jpeg)
-- Wireframe for homepage ![](/public/assets/images/medicate_home.jpeg)
-- Wireframe for google map ![](/public/assets/images/medicate_map.jpeg)
+- ERD Diagram ![](assets/images/erd.jpg)
+- Wireframe for homepage ![](assets/images/medicate_home.jpg)
+- Wireframe for google map ![](assets/images/medicate_map.jpg)
 
 ## Acknowledgments
 
