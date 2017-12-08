@@ -40,9 +40,9 @@ class App extends Component {
       <Router>
         <div>
           <nav>
-            <div class="nav-wrapper">
-              <a href="/" class="brand-logo"> Medicate </a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <div class='nav-wrapper'>
+              <a href='/' class='brand-logo'>Medicate</a>
+              <ul id='nav-mobile' class='right hide-on-med-and-down'>
                 <li><Link to='/'>Home</Link></li>
                 <li><Link to='/profile'>Profile</Link></li>
                 {this.state.user

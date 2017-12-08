@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import firebase from './firebase.js'
 import './App.css'
 
-
 class Profile extends Component {
   constructor (props) {
     super()
@@ -16,14 +15,20 @@ class Profile extends Component {
 
   componentDidMount () {
     /* Create reference to messages in Firebase Database */
-    let medRef = firebase.database().ref('/medications')
+    let medRef = firebase.database().ref('/medications').orderByKey()
     medRef.on('value', snapshot => {
-      /* Update React state when message is added at Firebase Database */
-      // let message = { text: snapshot.val(), id: snapshot.key };
+      /* Update React state when medication is added at Firebase Database */
       this.setState({
         medications: snapshot.val()
       })
     })
+  }
+
+  remove (e, deletedIndex) {
+    e.preventDefault()
+    console.log('deletedIndex', deletedIndex)
+    // var key = this.data('key')
+    firebase.database().ref('/medications').child(deletedIndex).remove()
   }
 
   handleSubmit (e) {
@@ -42,35 +47,39 @@ class Profile extends Component {
     })
   }
   render () {
-    return (
+    let allMedications = 'Please add new medication...'
+    if (this.state.medications.length !== 0) {
+      allMedications = this.state.medications.map((med, index) => {
+        return (
+          <div className='col s3 m5' key={index}>
+            <div className='card'>
+              {/* <div className='card-image'>
+                <img src='../assets/images/panadol.jpg' alt='paracetamol.jpg'></img>
+              </div> */}
+              <span className='card-title'>{med.medication}</span>
+              <div className='card-content'>{med.dosage}
+                <div class='card-action'>
+                  <button onClick={(e) => this.remove(e, index)}>Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      })
+    }
 
+    return (
       <div className='App'>
         <h1>Add Medications</h1>
-        <form onSubmit={(e)=>this.handleSubmit(e)}>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <label><h4>Medication:</h4><input type='text' name='medication' /></label>
           <label><h4>Dosage:</h4><input type='text' name='dosage' /></label>
-            <input type="submit" value="save" />
-          </form>
+          <input type='submit' value='save' />
+        </form>
 
         <h1>Medication list</h1>
         <div className='row'>
-          { this.state.medications.map((med, index) => {
-            return (
-              <div className='col s3 m5' key={index}>
-                <div className='card'>
-                  {/* <div className='card-image'>
-                    <img src='../assets/images/panadol.jpg' alt='paracetamol.jpg'></img>
-                  </div> */}
-                  <span className='card-title'>{med.medication}</span>
-                  <div className='card-content'>{med.dosage}
-                    <div class='card-action'>
-                      <button onClick=''>Delete</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+          { allMedications }
         </div>
       </div>
     )
