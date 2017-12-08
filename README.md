@@ -38,5 +38,5 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 ## Acknowledgments
 
 - Prima, Alex and Shumin
-
+- Gabriel
 - [youtube resource on adding multiple locations for google maps](https://www.youtube.com/watch?v=gYa8PtGi4GY)
